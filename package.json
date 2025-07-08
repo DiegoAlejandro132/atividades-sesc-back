@@ -1,0 +1,22 @@
+{
+  "name": "atividades-sesc-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiegoAlejandro132/atividades-sesc-back.git"
+  },
+  "author": "diego alejandro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiegoAlejandro132/atividades-sesc-back/issues"
+  },
+  "homepage": "https://github.com/DiegoAlejandro132/atividades-sesc-back#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
