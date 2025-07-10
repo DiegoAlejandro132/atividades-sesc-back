@@ -1,10 +1,10 @@
 const firebaseService = require('./firebase.service')
-const Responsavel = require('../models/responsavel.model')
-const caminho = "RESPONSAVEL"
+const Atividade = require('../models/atividade.model')
+const caminho = "ATIVIDADE"
 
 exports.criar = async(dados) => {
-    const responsavel = new Responsavel(dados)
-    return await firebaseService.criar(caminho, responsavel.toJSON())
+    const atividade = new Atividade(dados)
+    return await firebaseService.criar(caminho, atividade.toJSON())
 }
 
 exports.listar = async() => {

@@ -27,8 +27,8 @@ exports.alterar = async(req, res) => {
         const responsavelNovo = await responsavelService.alterar(id, dados)
         res.json(responsavelNovo)
     }catch(erro){
-        console.error("Erro ao criar responsavel: ", erro.message);
-        res.status(500).json({ erro: "Erro ao criar responsável" });
+        console.error("Erro ao alterar responsavel: ", erro.message);
+        res.status(500).json({ erro: "Erro ao alterar responsável" });
     }
 }
 
