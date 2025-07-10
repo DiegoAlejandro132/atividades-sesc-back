@@ -1,6 +1,6 @@
 const firebaseService = require('./firebase.service')
 const Responsavel = require('../models/responsavel.model')
-const caminho = "RESPONSVEL"
+const caminho = "RESPONSAVEL"
 
 exports.criar = async(dados) => {
     const responsavel = new Responsavel(dados)
