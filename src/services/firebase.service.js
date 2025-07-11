@@ -83,3 +83,57 @@ exports.buscraPorId = async(caminho, id) => {
         throw new Error('Falha ao buscar no Firebase');
     }
 }
+
+exports.buscarPorNome = async (caminho, nome) => {
+    try {
+        const ref = db.ref(caminho);
+        const snapshot = await ref
+            .orderByChild('nome_cliente')
+            .equalTo(nome)
+            .once('value');
+
+        if (!snapshot.exists()) {
+            return null;  // ou []
+        }
+
+        const resultados = [];
+        snapshot.forEach(child => {
+            resultados.push({ id: child.key, ...child.val() });
+        });
+
+        return resultados.length === 1 ? resultados[0] : resultados;
+
+    } catch (error) {
+        console.error(`Erro ao buscar por nome em ${caminho}:`, error);
+        throw new Error('Falha ao buscar por nome no Firebase');
+    }
+}
+
+exports.inscricaoExiste = async (idCliente, idAtividade) => {
+    try {
+        const ref = db.ref('INSCRICAO');
+        const snapshot = await ref.once('value');
+        var existe = false
+
+        if (!snapshot.exists()) {
+            return existe
+        }
+
+        const todasInscricoes = snapshot.val();
+
+        for (const [id, inscricao] of Object.entries(todasInscricoes)) {
+            if (
+                inscricao.id_cliente === idCliente &&
+                inscricao.id_atividade === idAtividade
+            ) {
+                existe = true
+                return existe
+            }
+        }
+        return existe
+    } catch (erro) {
+        console.error('Erro ao verificar inscrição:', erro);
+        throw new Error('Erro na verificação da inscrição.');
+    }
+};
+
