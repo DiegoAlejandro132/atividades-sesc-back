@@ -25,3 +25,7 @@ exports.alterar = async(id, dados) => {
 exports.excluir = async(id) => {
     await firebaseService.excluir(caminho, id)
 }
+
+exports.buscraPorId = async(id) =>{
+    return firebaseService.buscraPorId(caminho, id)
+}

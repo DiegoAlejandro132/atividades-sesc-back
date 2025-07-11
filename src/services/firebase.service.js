@@ -8,12 +8,17 @@ admin.initializeApp({
 
 const db = admin.database();
 
-exports.criar = async(caminho, objeto) => {
-    try{
-        const ref = db.ref(caminho).push()
+exports.criar = async(caminho, objeto, push = true) => {
+    try {
+        let ref;
+        if (push) {
+            ref = db.ref(caminho).push();
+        } else {
+            ref = db.ref(caminho);
+        }
         await ref.set(objeto);
-        return { id: ref.key, ...objeto };
-    }catch(error){
+        return { id: push ? ref.key : null, ...objeto };
+    } catch (error) {
         console.error("erro ao criar objeto no firebase: ", error.message);
         throw new Error("Erro ao criar objeto no Firebase");
     }
@@ -46,6 +51,16 @@ exports.alterar = async(caminho, id, objeto) => {
 exports.excluir = async(caminho, id) => {
     try{
         const ref = db.ref(`${caminho}/${id}`)
+        await ref.remove();
+    }catch(erro){
+        console.error('Erro ao excluir dados do Firebase:', erro.message);
+        throw new Error('Erro ao excluir dados do Firebase');
+    }
+}
+
+exports.excluirPorCaminho = async(caminho) => {
+    try{
+        const ref = db.ref(`${caminho}`)
         await ref.remove();
     }catch(erro){
         console.error('Erro ao excluir dados do Firebase:', erro.message);

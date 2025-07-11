@@ -40,3 +40,30 @@ exports.excluir = async(req, res) => {
         res.status(500).json({ erro: "Erro ao criar atividade" });
     }
 }
+
+exports.atividadesSemResponsavel = async(req, res) => {
+    try{
+        res.json(await atividadeService.listarSemResponsavel())
+    }catch(erro){
+        console.error("Erro ao listar atividades sem responsavel: ", erro.message);
+        res.status(500).json({ erro: "Erro ao listar atividades sem responsavel" });
+    }
+}
+
+exports.vicularResponsavel = async(req, res) => {
+    try{
+        res.send(await atividadeService.vicularResponsavel(req.body))
+    }catch(erro){
+        console.error("Erro ao vincular responsavel: ", erro.message);
+        res.status(500).json({ erro: "Erro ao vincular responsavel" });
+    }
+}
+
+exports.desvincularResponsavel = async(req, res) => {
+    try{
+        res.send(await atividadeService.desvicularResponsavel(req.params.id))
+    }catch(erro){
+        console.error("Erro ao desvincular responsavel: ", erro.message);
+        res.status(500).json({ erro: "Erro ao desvincular responsavel" });
+    }
+}
