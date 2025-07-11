@@ -20,7 +20,7 @@ exports.criar = async(caminho, objeto, push = true) => {
         return { id: push ? ref.key : null, ...objeto };
     } catch (error) {
         console.error("erro ao criar objeto no firebase: ", error.message);
-        throw new Error("Erro ao criar objeto no Firebase");
+        throw new Error("Erro ao criar objeto no banco de dados");
     }
 }
 

@@ -3,6 +3,12 @@ const Responsavel = require('../models/responsavel.model')
 const caminho = "RESPONSAVEL"
 
 exports.criar = async(dados) => {
+    if (!dados.nome_responsavel || typeof dados.nome_responsavel !== 'string') {
+        throw new Error('O campo nome responsavel é obrigatório', 400);
+    }
+    if (!dados.matricula || typeof dados.matricula !== 'string') {
+        throw new Error('O campo matrícula é obrigatória', 400);
+    }
     const responsavel = new Responsavel(dados)
     return await firebaseService.criar(caminho, responsavel.toJSON())
 }
