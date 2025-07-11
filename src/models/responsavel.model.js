@@ -1,17 +1,17 @@
 class Responsavel{
-    constructor({ nome, matricula }) {
-        this.NOME_RESPONSAVEL = nome;
-        this.MATRICULA = matricula;
-        this.DATA_CRIACAO = new Date().toISOString();
+    constructor({ nome_responsavel, matricula }) {
+        this.nome_responsavel = nome_responsavel;
+        this.matricula = matricula;
+        this.data_criacao = new Date().toISOString();
     }
 
     toJSON() {
         return {
-            NOME_RESPONSAVEL: this.NOME_RESPONSAVEL,
-            MATRICULA: this.MATRICULA,
-            DATA_CRIACAO: this.DATA_CRIACAO
+            nome_responsavel: this.nome_responsavel,
+            matricula: this.matricula,
+            data_criacao: this.data_criacao
         };
     }
 }
 
-module.exports = Responsavel
+module.exports = Responsavel;
