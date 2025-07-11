@@ -2,21 +2,19 @@ const responsavelService = require('../services/responsavel.service');
 
 exports.listar = async(req, res) => {
     try{
-        const listaReponsaveis = await responsavelService.listar()
-        res.json(listaReponsaveis)
+        res.json(await responsavelService.listar())
     }catch(erro){
         console.error("Erro ao listar responsaveis: ", erro.message);
-        res.status(500).json({ erro: "Erro ao listar responsaveis" });
+        res.status(500).json({ erro: "Erro ao listar responsaveis: " + erro.message });
     }
 }
 
 exports.criar = async(req, res) => {
     try{
-        const responsavelNovo = await responsavelService.criar(req.body);
-        res.json(responsavelNovo)
+        res.json(await responsavelService.criar(req.body))
     }catch(erro){
         console.error("Erro ao criar responsavel: ", erro.message);
-        res.status(500).json({ erro: "Erro ao criar responsável" });
+        res.status(500).json({ erro: "Erro ao criar responsável: " + erro.message });
     }
 }
 
